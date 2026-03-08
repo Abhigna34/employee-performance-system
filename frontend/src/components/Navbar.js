@@ -1,27 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(){
 
-  const navStyle = {
-    backgroundColor: "#333",
-    padding: "10px"
+  const nav = {
+    background:"#333",
+    padding:"10px",
+    display:"flex",
+    justifyContent:"space-between"
   };
 
-  const linkStyle = {
-    color: "white",
-    marginRight: "15px",
-    textDecoration: "none",
-    fontSize: "18px"
+  const link = {
+    color:"white",
+    textDecoration:"none",
+    marginRight:"15px"
   };
 
-  return (
-    <div style={navStyle}>
-      <Link style={linkStyle} to="/">Dashboard</Link>
-      <Link style={linkStyle} to="/employees">Employees</Link>
-      <Link style={linkStyle} to="/tasks">Tasks</Link>
+  return(
+    <div style={nav}>
+
+      <div style={{color:"white",fontWeight:"bold"}}>
+        Employee Performance System
+      </div>
+
+      <div>
+        <Link style={link} to="/dashboard">Dashboard</Link>
+        <Link style={link} to="/employees">Employees</Link>
+        <Link style={link} to="/tasks">Tasks</Link>
+      </div>
+
     </div>
-  );
+  )
 }
 
 export default Navbar;

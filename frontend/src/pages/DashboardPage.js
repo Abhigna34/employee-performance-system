@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { getDashboardData } from "../services/dashboardService";
-import DashboardCharts from "../components/DashboardCharts";
 import DashboardCards from "../components/DashboardCards";
+import DashboardCharts from "../components/DashboardCharts";
 
 function DashboardPage() {
 
   const [dashboard, setDashboard] = useState(null);
 
   useEffect(() => {
-    getDashboardData()
-      .then(response => {
-        setDashboard(response.data);
-      })
-      .catch(error => {
-        console.error("Error fetching dashboard data", error);
-      });
+    getDashboardData().then(response => {
+      setDashboard(response.data);
+    });
   }, []);
 
   if (!dashboard) {
     return <h2>Loading Dashboard...</h2>;
   }
 
+  const containerStyle = {
+    maxWidth: "1000px",
+    margin: "auto",
+    padding: "20px"
+  };
+
   return (
-    <div>
+    <div style={containerStyle}>
+
       <h1>Dashboard</h1>
 
-      <p>Total Employees: {dashboard.totalEmployees}</p>
-      <p>Total Tasks: {dashboard.totalTasks}</p>
-      <p>Completed Tasks: {dashboard.completedTasks}</p>
-      <p>Pending Tasks: {dashboard.pendingTasks}</p>
-      <p>Average Performance: {dashboard.averagePerformance}%</p>
+      <DashboardCards dashboard={dashboard} />
 
-<DashboardCards dashboard={dashboard} />
-        <DashboardCharts dashboard={dashboard} />
+      <DashboardCharts dashboard={dashboard} />
+
     </div>
   );
 }
