@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getDashboardData } from "../services/dashboardService";
+import DashboardCharts from "../components/DashboardCharts";
 
 function DashboardPage() {
 
@@ -28,6 +29,7 @@ function DashboardPage() {
       <p>Completed Tasks: {dashboard.completedTasks}</p>
       <p>Pending Tasks: {dashboard.pendingTasks}</p>
       <p>Average Performance: {dashboard.averagePerformance}%</p>
+        <DashboardCharts dashboard={dashboard} />
     </div>
   );
 }
